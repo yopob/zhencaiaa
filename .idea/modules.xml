@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ZhenCaiEC/ZhenCaiEC.iml" filepath="$PROJECT_DIR$/ZhenCaiEC/ZhenCaiEC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zhencai-annotations/zhencai-annotations.iml" filepath="$PROJECT_DIR$/zhencai-annotations/zhencai-annotations.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zhencai-compiler/zhencai-compiler.iml" filepath="$PROJECT_DIR$/zhencai-compiler/zhencai-compiler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zhencai-core/zhencai-core.iml" filepath="$PROJECT_DIR$/zhencai-core/zhencai-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zhencai-eclib/zhencai-eclib.iml" filepath="$PROJECT_DIR$/zhencai-eclib/zhencai-eclib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zhencai-workspace.iml" filepath="$PROJECT_DIR$/zhencai-workspace.iml" />
+    </modules>
+  </component>
+</project>
