@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion 26
@@ -6,7 +7,7 @@ android {
 
 
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -25,10 +26,19 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:26.0.0-beta1'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:0.5'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
-    implementation project(':zhencai-annotations')
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api 'com.android.support:appcompat-v7:26.0.0-beta1'
+    //iconify lib 字体图标框架
+    api 'com.joanzapata.iconify:android-iconify-ionicons:2.2.2'
+    api 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2'
+    //Fragmentation lib Fragemnt开发框架
+    api 'me.yokeyword:fragmentation:1.3.3'
+    api 'me.yokeyword:fragmentation-swipeback:1.3.3'
+    //butterknife lib 依赖注入框架
+    api 'com.jakewharton:butterknife:8.4.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    testApi 'junit:junit:4.12'
+    androidTestApi 'com.android.support.test:runner:0.5'
+    androidTestApi 'com.android.support.test.espresso:espresso-core:2.2.2'
+    api project(':zhencai-annotations')
 }
