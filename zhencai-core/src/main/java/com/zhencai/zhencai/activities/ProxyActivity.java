@@ -27,6 +27,7 @@ public abstract class ProxyActivity extends SupportActivity {
         container.setId(R.id.delegate_container);
         setContentView(container);
         if(savedInstanceState == null){
+            //加载根fragment，关联装载fragment的容器
             loadRootFragment(R.id.delegate_container,setRootDelegate());
         }
     }
