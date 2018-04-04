@@ -5,14 +5,15 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.widget.LinearLayout;
 
+import com.zhencai.zhencai.activities.ProxyActivity;
 import com.zhencai.zhencai.app.ZhenCai;
+import com.zhencai.zhencai.delegate.ZhenCaiDelegate;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends ProxyActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public ZhenCaiDelegate setRootDelegate() {
+        return new ZhenCaiECDelegate();
     }
 
 

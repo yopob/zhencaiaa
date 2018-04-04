@@ -37,6 +37,12 @@ dependencies {
     //butterknife lib 依赖注入框架
     api 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    //网络请求依赖，okhttp lib retrofit lib 转换器 lib
+    api 'com.squareup.okio:okio:1.13.0'
+    api 'com.squareup.okhttp3:okhttp:3.8.1'
+    api 'com.squareup.retrofit2:retrofit:2.3.0'
+    api 'com.squareup.retrofit2:converter-scalars:2.3.0'
+
     testApi 'junit:junit:4.12'
     androidTestApi 'com.android.support.test:runner:0.5'
     androidTestApi 'com.android.support.test.espresso:espresso-core:2.2.2'

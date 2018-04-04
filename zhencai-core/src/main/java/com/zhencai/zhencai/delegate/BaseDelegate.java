@@ -27,6 +27,7 @@ public abstract class BaseDelegate extends SwipeBackFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = null;
         if(setLayout() instanceof  Integer){
+            //只获取setLayout的数据，不需要把setLayout添加到container下面，最后一个参数为false
             rootView = inflater.inflate((Integer)setLayout(),container,false);
         }else if(setLayout() instanceof  View){
             rootView = (View)setLayout();
