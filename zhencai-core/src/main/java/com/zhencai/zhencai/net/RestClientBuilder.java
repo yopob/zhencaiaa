@@ -9,6 +9,7 @@ import com.zhencai.zhencai.net.callback.IRequest;
 import com.zhencai.zhencai.net.callback.ISuccess;
 import com.zhencai.zhencai.ui.LoaderStyle;
 
+import java.io.File;
 import java.util.Map;
 
 import okhttp3.MediaType;
@@ -28,6 +29,7 @@ public class RestClientBuilder {
     private RequestBody mBody = null;
     private LoaderStyle loaderStyle = null;
     private Context context = null;
+    private File mfile = null;
 
     protected RestClientBuilder(){
 
@@ -45,6 +47,16 @@ public class RestClientBuilder {
 
     public final RestClientBuilder params(String key,Object value){
         PARAMS.put(key,value);
+        return this;
+    }
+
+    public final RestClientBuilder file(File file){
+        this.mfile = file;
+        return this;
+    }
+
+    public final RestClientBuilder file(String filePath){
+        this.mfile = new File(filePath);
         return this;
     }
 
@@ -86,6 +98,6 @@ public class RestClientBuilder {
     }
 
     public final RestClient build(){
-        return new RestClient(mUrl,PARAMS,mIRequest,mISuccess,mIFailure,mIErro,mBody,context,loaderStyle);
+        return new RestClient(mUrl,PARAMS,mIRequest,mISuccess,mIFailure,mIErro,mBody,mfile,context,loaderStyle);
     }
 }
