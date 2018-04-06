@@ -39,7 +39,8 @@ public class ZhenCaiECDelegate extends ZhenCaiDelegate {
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         //ArrayMap<String,Object> a = new RestCreator().getParams();
         //a.put("aa","aa");
-        testRestClient();
+        //testRestClient();
+        testDownLoad();
     }
 
     /*private Button test;
@@ -137,6 +138,33 @@ public class ZhenCaiECDelegate extends ZhenCaiDelegate {
                 })
                 .build()
                 .get();
+    }
+
+    private void testDownLoad(){
+        RestClient.builder()
+                .url("https://news.baidu.com/")
+                .name("aa")
+                .loader(getContext())
+                .success(new ISuccess() {
+                    @Override
+                    public void OnSuccess(String response) {
+                        //Toast.makeText(getContext(),response,Toast.LENGTH_LONG).show();
+                    }
+                })
+                .failure(new IFailure() {
+                    @Override
+                    public void onFailure() {
+                        Toast.makeText(getContext(),"请求失败",Toast.LENGTH_LONG).show();
+                    }
+                })
+                .error(new IError() {
+                    @Override
+                    public void OnError(int code, String msg) {
+                        Toast.makeText(getContext(),msg,Toast.LENGTH_LONG).show();
+                    }
+                })
+                .build()
+                .downLoad();
     }
 
    /* @Override

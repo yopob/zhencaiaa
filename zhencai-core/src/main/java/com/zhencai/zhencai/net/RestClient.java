@@ -8,6 +8,7 @@ import com.zhencai.zhencai.net.callback.IFailure;
 import com.zhencai.zhencai.net.callback.IRequest;
 import com.zhencai.zhencai.net.callback.ISuccess;
 import com.zhencai.zhencai.net.callback.RequestCallbacks;
+import com.zhencai.zhencai.net.download.DownLoadHandle;
 import com.zhencai.zhencai.ui.LoaderStyle;
 import com.zhencai.zhencai.ui.ZhenCaiLoader;
 
@@ -27,16 +28,24 @@ import retrofit2.http.Multipart;
  * Created by Administrator on 2018/3/23 0023.
  */
 public class RestClient {
+    //region 参数列表
     private final String URL;
     private final ArrayMap<String,Object> PARAMS = RestCreator.getParams();
     private final IRequest REQUEST;
     private final ISuccess SUCCESS;
     private final IFailure FAILURE;
     private final IError ERROR;
+    //raw相关
     private final RequestBody BODY;
     private final LoaderStyle LOADER_STYLE;
     private final Context CONTEXT;
+    //上传相关
     private final File FILE;
+    //下载相关
+    private final String DOWNLOAD_DIR;
+    private final String EXTENSION;
+    private final String NAME;
+    //endregion
 
     public RestClient(String url,
                       ArrayMap<String, Object> params,
@@ -47,7 +56,10 @@ public class RestClient {
                       RequestBody body,
                       File file,
                       Context context,
-                      LoaderStyle loaderStyle) {
+                      LoaderStyle loaderStyle,
+                      String downLoadDir,
+                      String extension,
+                      String name) {
         this.URL = url;
         PARAMS.putAll(params);
         this.REQUEST = request;
@@ -58,6 +70,9 @@ public class RestClient {
         this.FILE = file;
         this.CONTEXT = context;
         this.LOADER_STYLE = loaderStyle;
+        this.DOWNLOAD_DIR = downLoadDir;
+        this.EXTENSION = extension;
+        this.NAME = name;
     }
 
     public static RestClientBuilder builder(){
@@ -141,5 +156,13 @@ public class RestClient {
 
     public final void delete(){
         request(HttpMethod.DELETE);
+    }
+
+    public final void upload(){
+        request(HttpMethod.UPLOAD);
+    }
+
+    public final void downLoad(){
+        new DownLoadHandle(URL,REQUEST,SUCCESS,FAILURE,ERROR,DOWNLOAD_DIR,EXTENSION,NAME).handleDownLoad();
     }
 }

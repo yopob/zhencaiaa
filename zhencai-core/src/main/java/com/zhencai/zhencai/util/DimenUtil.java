@@ -15,7 +15,7 @@ public class DimenUtil {
      * @return 屏幕宽度
      */
     public static int getScreenWidth(){
-        final Resources resources = ZhenCai.getApplication().getResources();
+        final Resources resources = ZhenCai.getApplicationContext().getResources();
         final DisplayMetrics dm = resources.getDisplayMetrics();
         return dm.widthPixels;
     }
@@ -25,7 +25,7 @@ public class DimenUtil {
      * @return 屏幕高度
      */
     public static int getScreenHeight(){
-        final Resources resources = ZhenCai.getApplication().getResources();
+        final Resources resources = ZhenCai.getApplicationContext().getResources();
         final DisplayMetrics dm = resources.getDisplayMetrics();
         return dm.heightPixels;
     }
