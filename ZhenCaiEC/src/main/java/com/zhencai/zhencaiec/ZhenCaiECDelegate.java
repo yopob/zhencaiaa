@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
+import android.util.ArrayMap;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +16,11 @@ import android.widget.Toast;
 import com.alipay.euler.andfix.AndFix;
 import com.alipay.euler.andfix.patch.PatchManager;
 import com.zhencai.zhencai.delegate.ZhenCaiDelegate;
+import com.zhencai.zhencai.net.RestClient;
+import com.zhencai.zhencai.net.RestCreator;
+import com.zhencai.zhencai.net.callback.IError;
+import com.zhencai.zhencai.net.callback.IFailure;
+import com.zhencai.zhencai.net.callback.ISuccess;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,16 +37,18 @@ public class ZhenCaiECDelegate extends ZhenCaiDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-
+        //ArrayMap<String,Object> a = new RestCreator().getParams();
+        //a.put("aa","aa");
+        testRestClient();
     }
 
-    private Button test;
+    /*private Button test;
     private Button fix;
-    private Button check;
+    private Button check;*/
 
     @Override
     public void onResume() {
-        test = getActivity().findViewById(R.id.Test1);
+        /*test = getActivity().findViewById(R.id.Test1);
         fix = getActivity().findViewById(R.id.Fix);
         check = getActivity().findViewById(R.id.Check);
 
@@ -75,7 +83,7 @@ public class ZhenCaiECDelegate extends ZhenCaiDelegate {
                         }
                     }
                 }
-                /*Toast.makeText(getActivity(),"Fix",Toast.LENGTH_LONG).show();
+                *//*Toast.makeText(getActivity(),"Fix",Toast.LENGTH_LONG).show();
                 PatchManager myPathManager = ((ZhenCaiApp)getActivity().getApplicationContext()).myPathManager;
                 //myPathManager.removeAllPatch();
                 try {
@@ -89,7 +97,7 @@ public class ZhenCaiECDelegate extends ZhenCaiDelegate {
                 } catch (IOException e) {
                     Log.e("exception",e.getMessage());
                     e.printStackTrace();
-                }*/
+                }*//*
             }
         });
 
@@ -99,16 +107,44 @@ public class ZhenCaiECDelegate extends ZhenCaiDelegate {
                 Toast.makeText(getActivity(),String.valueOf(AndFix.setup()),Toast.LENGTH_LONG).show();
             }
         });
+*/
 
         super.onResume();
     }
 
-    @Override
+    private void testRestClient(){
+        RestClient.builder()
+                .url("https://news.baidu.com/")
+                .params("","")
+                .loader(getContext())
+                .success(new ISuccess() {
+                    @Override
+                    public void OnSuccess(String response) {
+                        //Toast.makeText(getContext(),response,Toast.LENGTH_LONG).show();
+                    }
+                })
+                .failure(new IFailure() {
+                    @Override
+                    public void onFailure() {
+                        Toast.makeText(getContext(),"请求失败",Toast.LENGTH_LONG).show();
+                    }
+                })
+                .error(new IError() {
+                    @Override
+                    public void OnError(int code, String msg) {
+                        Toast.makeText(getContext(),msg,Toast.LENGTH_LONG).show();
+                    }
+                })
+                .build()
+                .get();
+    }
+
+   /* @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == 300) {
             Log.i("wytings", "--------------requestCode == 300->" + requestCode + "," + permissions.length + "," + grantResults.length);
         } else {
             Log.i("wytings", "--------------requestCode != 300->" + requestCode + "," + permissions + "," + grantResults);
         }
-    }
+    }*/
 }

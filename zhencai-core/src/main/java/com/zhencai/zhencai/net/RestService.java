@@ -18,9 +18,9 @@ import retrofit2.http.Streaming;
 import retrofit2.http.Url;
 
 /**
+ * Retrofit网络请求需要的service类，用了动态代理
  * Created by Administrator on 2018/3/23 0023.
  */
-
 public interface RestService {
     @GET
     Call<String> get(@Url String url, @QueryMap Map<String,Object> params);

@@ -26,7 +26,7 @@ public class ZhenCaiApp extends Application {
     public void onCreate() {
         super.onCreate();
 
-        // 初始化patch管理类
+        /*// 初始化patch管理类
         myPathManager = new PatchManager(this);
         // 初始化patch版本
         myPathManager.init("1.0");
@@ -39,7 +39,7 @@ public class ZhenCaiApp extends Application {
                 .getAbsolutePath() + "/zhencai/new.apatch";
         File file = new File(patchFileString);
         if(file.exists()) {
-            /*try {
+            *//*try {
 
                 Log.i("patchFileString", patchFileString);
                 //3）添加patch
@@ -49,8 +49,9 @@ public class ZhenCaiApp extends Application {
                 Log.e("exception", e.getMessage());
                 e.printStackTrace();
             }
-            myPathManager.removeAllPatch();*/
+            myPathManager.removeAllPatch();*//*
         }
+        */
         ZhenCai.init(this)
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
@@ -60,5 +61,5 @@ public class ZhenCaiApp extends Application {
 
 
 
-    public PatchManager myPathManager;
+    //public PatchManager myPathManager;
 }

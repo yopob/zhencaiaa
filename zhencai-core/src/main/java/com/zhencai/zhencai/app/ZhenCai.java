@@ -14,7 +14,7 @@ public final class ZhenCai {
         return Configurator.getInstance();
     }
 
-    private  static ArrayMap<String,Object> getConfigurations(){
+    public static ArrayMap<String,Object> getConfigurations(){
         return Configurator.getInstance().getZhenCaiConfigs();
     }
 

@@ -60,7 +60,6 @@ public class Configurator {
      */
     public final Configurator withApiHost(String host){
         ZHENCAI_CONFIGS.put(ConfigType.API_HOST.name(),host);
-
         return this;
     }
     //endregion
