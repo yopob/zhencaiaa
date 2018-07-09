@@ -4,12 +4,12 @@ package com.zhencai.zhencai.net;
  * Created by Administrator on 2018/4/4 0004.
  */
 
-public enum HttpMethod {
-    GET,
-    POST,
-    POST_RAW,
-    PUT,
-    PUT_RAW,
-    DELETE,
-    UPLOAD
+public interface HttpMethod {
+    String GET = "GET";
+    String POST = "POST";
+    String POST_RAW = "POST_RAW";
+    String PUT = "PUT";
+    String PUT_RAW = "PUT_RAW";
+    String DELETE = "DELETE";
+    String UPLOAD = "UPLOAD";
 }

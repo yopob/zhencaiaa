@@ -10,7 +10,7 @@ import android.util.ArrayMap;
 
 public final class ZhenCai {
     public static Configurator init(Context context){
-        getConfigurations().put(ConfigType.APPLICATION_CONTEXT.name(),context.getApplicationContext());
+        getConfigurations().put(ConfigType.APPLICATION_CONTEXT,context.getApplicationContext());
         return Configurator.getInstance();
     }
 
@@ -19,6 +19,6 @@ public final class ZhenCai {
     }
 
     public static Context getApplicationContext(){
-        return (Context) getConfigurations().get(ConfigType.APPLICATION_CONTEXT.name());
+        return (Context) getConfigurations().get(ConfigType.APPLICATION_CONTEXT);
     }
 }

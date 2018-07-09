@@ -31,7 +31,7 @@ public class Configurator {
     //endregion
 
     private Configurator(){
-        ZHENCAI_CONFIGS.put(ConfigType.CONFIG_READY.name(),false);
+        ZHENCAI_CONFIGS.put(ConfigType.CONFIG_READY,false);
     }
 
     //region 初始化配置
@@ -39,7 +39,7 @@ public class Configurator {
      * 初始化配置
      */
     public final void configure(){
-        ZHENCAI_CONFIGS.put(ConfigType.CONFIG_READY.name(),true);
+        ZHENCAI_CONFIGS.put(ConfigType.CONFIG_READY,true);
         initIcons();
     }
     //endregion
@@ -59,7 +59,7 @@ public class Configurator {
      * @return 当前对象
      */
     public final Configurator withApiHost(String host){
-        ZHENCAI_CONFIGS.put(ConfigType.API_HOST.name(),host);
+        ZHENCAI_CONFIGS.put(ConfigType.API_HOST,host);
         return this;
     }
     //endregion
@@ -95,7 +95,7 @@ public class Configurator {
      * 检查配置是否准备好
      */
     private void checkConfiguration(){
-        final boolean isReady = (boolean) ZHENCAI_CONFIGS.get(ConfigType.CONFIG_READY.name());
+        final boolean isReady = (boolean) ZHENCAI_CONFIGS.get(ConfigType.CONFIG_READY);
         if(!isReady){
             throw  new RuntimeException("Configuration is not ready");
         }
@@ -105,14 +105,14 @@ public class Configurator {
     //region getConfiguration(获取对应的配置对象)
     /**
      * 获取对应的配置对象
-     * @param key 根据配置名获取配置对象
+     * @param configKey 根据配置名获取配置对象
      * @param <T> 配置对象的类型
      * @return 配置对象
      */
     @SuppressWarnings("unchecked")
-    final <T> T getConfiguration(ConfigType key){
+    final <T> T getConfiguration(String configKey){
         checkConfiguration();
-        return  (T)ZHENCAI_CONFIGS.get(key.name());
+        return  (T)ZHENCAI_CONFIGS.get(configKey);
     }
     //endregion
 

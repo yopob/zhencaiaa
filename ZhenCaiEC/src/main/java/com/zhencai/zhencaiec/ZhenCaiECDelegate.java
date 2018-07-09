@@ -13,17 +13,25 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.alipay.euler.andfix.AndFix;
-import com.alipay.euler.andfix.patch.PatchManager;
 import com.zhencai.zhencai.delegate.ZhenCaiDelegate;
 import com.zhencai.zhencai.net.RestClient;
 import com.zhencai.zhencai.net.RestCreator;
 import com.zhencai.zhencai.net.callback.IError;
 import com.zhencai.zhencai.net.callback.IFailure;
 import com.zhencai.zhencai.net.callback.ISuccess;
+import com.zhencai.zhencai.net.rx.RxRestClient;
+import com.zhencai.zhencai.ui.ZhenCaiLoader;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.WeakHashMap;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2018/3/23 0023.
@@ -40,7 +48,8 @@ public class ZhenCaiECDelegate extends ZhenCaiDelegate {
         //ArrayMap<String,Object> a = new RestCreator().getParams();
         //a.put("aa","aa");
         //testRestClient();
-        testDownLoad();
+        //testDownLoad();
+        onCallRxRestClient();
     }
 
     /*private Button test;
@@ -113,10 +122,75 @@ public class ZhenCaiECDelegate extends ZhenCaiDelegate {
         super.onResume();
     }
 
-    private void testRestClient(){
+    private void onCallRxGet() {
+        final String url = "https://news.baidu.com/";
+        final WeakHashMap<String, Object> params = new WeakHashMap<>();
+
+        final Observable<String> observable = RestCreator.getRxRestService().get(url, params);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    private void onCallRxRestClient() {
+        final String url = "https://news.baidu.com/";
+        final WeakHashMap<String, Object> params = new WeakHashMap<>();
+
+        RxRestClient.builder()
+                .url(url)
+                .params(params)
+                .loader(getContext())
+                .build()
+                .get()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        Toast.makeText(getContext(),s,Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        ZhenCaiLoader.stopLoading();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        ZhenCaiLoader.stopLoading();
+                    }
+                });
+    }
+
+    private void testRestClient() {
         RestClient.builder()
                 .url("https://news.baidu.com/")
-                .params("","")
+                .params("", "")
                 .loader(getContext())
                 .success(new ISuccess() {
                     @Override
@@ -127,20 +201,20 @@ public class ZhenCaiECDelegate extends ZhenCaiDelegate {
                 .failure(new IFailure() {
                     @Override
                     public void onFailure() {
-                        Toast.makeText(getContext(),"请求失败",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "请求失败", Toast.LENGTH_LONG).show();
                     }
                 })
                 .error(new IError() {
                     @Override
                     public void OnError(int code, String msg) {
-                        Toast.makeText(getContext(),msg,Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
                     }
                 })
                 .build()
                 .get();
     }
 
-    private void testDownLoad(){
+    private void testDownLoad() {
         RestClient.builder()
                 .url("https://news.baidu.com/")
                 .name("aa")
@@ -154,13 +228,13 @@ public class ZhenCaiECDelegate extends ZhenCaiDelegate {
                 .failure(new IFailure() {
                     @Override
                     public void onFailure() {
-                        Toast.makeText(getContext(),"请求失败",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "请求失败", Toast.LENGTH_LONG).show();
                     }
                 })
                 .error(new IError() {
                     @Override
                     public void OnError(int code, String msg) {
-                        Toast.makeText(getContext(),msg,Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
                     }
                 })
                 .build()

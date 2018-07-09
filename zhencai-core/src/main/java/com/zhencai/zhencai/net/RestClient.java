@@ -14,6 +14,7 @@ import com.zhencai.zhencai.ui.ZhenCaiLoader;
 
 import java.io.File;
 import java.util.Map;
+import java.util.WeakHashMap;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -30,14 +31,14 @@ import retrofit2.http.Multipart;
 public class RestClient {
     //region 参数列表
     private final String URL;
-    private final ArrayMap<String,Object> PARAMS = RestCreator.getParams();
+    private final WeakHashMap<String,Object> PARAMS = RestCreator.getParams();
     private final IRequest REQUEST;
     private final ISuccess SUCCESS;
     private final IFailure FAILURE;
     private final IError ERROR;
     //raw相关
     private final RequestBody BODY;
-    private final LoaderStyle LOADER_STYLE;
+    private final String LOADER_STYLE;
     private final Context CONTEXT;
     //上传相关
     private final File FILE;
@@ -48,7 +49,7 @@ public class RestClient {
     //endregion
 
     public RestClient(String url,
-                      ArrayMap<String, Object> params,
+                      WeakHashMap<String, Object> params,
                       IRequest request,
                       ISuccess success,
                       IFailure failure,
@@ -56,7 +57,7 @@ public class RestClient {
                       RequestBody body,
                       File file,
                       Context context,
-                      LoaderStyle loaderStyle,
+                      String loaderStyle,
                       String downLoadDir,
                       String extension,
                       String name) {
@@ -79,7 +80,7 @@ public class RestClient {
         return new RestClientBuilder();
     }
 
-    private void request(HttpMethod method){
+    private void request(String httpMethod){
         final RestService service = RestCreator.getRestService();
         Call<String> call = null;
         if(REQUEST != null){
@@ -88,32 +89,24 @@ public class RestClient {
         if(LOADER_STYLE != null){
             ZhenCaiLoader.showLoading(CONTEXT,LOADER_STYLE);
         }
-        switch (method){
-            case GET:
-                call = service.get(URL,PARAMS);
-                break;
-            case POST:
-                call = service.post(URL,PARAMS);
-                break;
-            case POST_RAW:
-                call = service.postRaw(URL,BODY);
-                break;
-            case PUT:
-                call = service.put(URL,PARAMS);
-                break;
-            case PUT_RAW:
-                call = service.putRaw(URL, BODY);
-                break;
-            case DELETE:
-                call = service.delete(URL,PARAMS);
-                break;
-            case UPLOAD:
-                final RequestBody requestBody = RequestBody.create(MediaType.parse(MultipartBody.FORM.toString()),FILE);
-                final MultipartBody.Part body = MultipartBody.Part.createFormData("file",FILE.getName(),requestBody);
-                call = service.upload(URL,body);
-                break;
-            default:
-                break;
+        if(httpMethod.equals(HttpMethod.GET)){
+            call = service.get(URL,PARAMS);
+        }else if(httpMethod.equals(HttpMethod.POST)){
+            call = service.post(URL,PARAMS);
+        }else if(httpMethod.equals(HttpMethod.POST_RAW)){
+            call = service.postRaw(URL,BODY);
+        }else if(httpMethod.equals(HttpMethod.PUT)){
+            call = service.put(URL,PARAMS);
+        }else if(httpMethod.equals(HttpMethod.PUT_RAW)){
+            call = service.putRaw(URL, BODY);
+        }else if(httpMethod.equals(HttpMethod.DELETE)){
+            call = service.delete(URL,PARAMS);
+        }else if(httpMethod.equals(HttpMethod.UPLOAD)){
+            final RequestBody requestBody = RequestBody.create(MediaType.parse(MultipartBody.FORM.toString()),FILE);
+            final MultipartBody.Part body = MultipartBody.Part.createFormData("file",FILE.getName(),requestBody);
+            call = service.upload(URL,body);
+        }else {
+
         }
 
         if(call != null){

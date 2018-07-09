@@ -3,42 +3,42 @@ package com.zhencai.zhencai.ui;
 /**
  * Created by Administrator on 2018/4/5 0005.
  */
-public enum LoaderStyle {
+public interface LoaderStyle {
     //row 1
-    BallPulseIndicator,
-    BallGridPulseIndicator,
-    BallClipRotateIndicator,
-    BallClipRotatePulseIndicator,
+    String BallPulseIndicator = "BallPulseIndicator";
+    String BallGridPulseIndicator = "BallGridPulseIndicator";
+    String BallClipRotateIndicator = "BallClipRotateIndicator";
+    String BallClipRotatePulseIndicator = "BallClipRotatePulseIndicator";
     //row 2
-    SquareSpinIndicator,
-    BallClipRotateMultipleIndicator,
-    BallPulseRiseIndicator,
-    BallRotateIndicator,
+    String SquareSpinIndicator = "SquareSpinIndicator";
+    String BallClipRotateMultipleIndicator = "BallClipRotateMultipleIndicator";
+    String BallPulseRiseIndicator = "BallPulseRiseIndicator";
+    String BallRotateIndicator = "BallRotateIndicator";
     //row 3
-    CubeTransitionIndicator,
-    BallZigZagIndicator,
-    BallZigZagDeflectIndicator,
-    BallTrianglePathIndicator,
+    String CubeTransitionIndicator = "CubeTransitionIndicator";
+    String BallZigZagIndicator = "BallZigZagIndicator";
+    String BallZigZagDeflectIndicator = "BallZigZagDeflectIndicator";
+    String BallTrianglePathIndicator = "BallTrianglePathIndicator";
     //row 4
-    BallScaleIndicator,
-    LineScaleIndicator,
-    LineScalePartyIndicator,
-    BallScaleMultipleIndicator,
+    String BallScaleIndicator = "BallScaleIndicator";
+    String LineScaleIndicator = "LineScaleIndicator";
+    String LineScalePartyIndicator = "LineScalePartyIndicator";
+    String BallScaleMultipleIndicator = "BallScaleMultipleIndicator";
     //row 5
-    BallPulseSyncIndicator,
-    BallBeatIndicator,
-    LineScalePulseOutIndicator,
-    LineScalePulseOutRapidIndicator,
+    String BallPulseSyncIndicator = "BallPulseSyncIndicator";
+    String BallBeatIndicator = "BallBeatIndicator";
+    String LineScalePulseOutIndicator = "LineScalePulseOutIndicator";
+    String LineScalePulseOutRapidIndicator = "LineScalePulseOutRapidIndicator";
     //row 6
-    BallScaleRippleIndicator,
-    BallScaleRippleMultipleIndicator,
-    BallSpinFadeLoaderIndicator,
-    LineSpinFadeLoaderIndicator,
+    String BallScaleRippleIndicato = "BallScaleRippleIndicator";
+    String BallScaleRippleMultipleIndicator = "BallScaleRippleMultipleIndicator";
+    String BallSpinFadeLoaderIndicator = "BallSpinFadeLoaderIndicator";
+    String LineSpinFadeLoaderIndicator = "LineSpinFadeLoaderIndicator";
     //row 7
-    TriangleSkewSpinIndicator,
-    PacmanIndicator,
-    BallGridBeatIndicator,
-    SemiCircleSpinIndicator,
+    String TriangleSkewSpinIndicato = "TriangleSkewSpinIndicato";
+    String PacmanIndicator = "PacmanIndicator";
+    String BallGridBeatIndicator = "BallGridBeatIndicator";
+    String SemiCircleSpinIndicator = "SemiCircleSpinIndicator";
     //row 8
     //com.wang.avi.sample.MyCustomIndicator
 }

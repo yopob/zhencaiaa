@@ -11,6 +11,7 @@ import com.zhencai.zhencai.ui.LoaderStyle;
 
 import java.io.File;
 import java.util.Map;
+import java.util.WeakHashMap;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -21,13 +22,13 @@ import okhttp3.RequestBody;
  */
 public class RestClientBuilder {
     private String mUrl = null;
-    private static final ArrayMap<String,Object> PARAMS = RestCreator.getParams();
+    private static final WeakHashMap<String,Object> PARAMS = RestCreator.getParams();
     private IRequest mIRequest = null;
     private ISuccess mISuccess = null;
     private IFailure mIFailure = null;
     private IError mIErro = null;
     private RequestBody mBody = null;
-    private LoaderStyle loaderStyle = null;
+    private String loaderStyle = null;
     private Context context = null;
     private File mfile = null;
     private String downLoadDir = null;
@@ -103,7 +104,7 @@ public class RestClientBuilder {
         return this;
     }
 
-    public final RestClientBuilder loader(Context context,LoaderStyle loaderStyle){
+    public final RestClientBuilder loader(Context context,String loaderStyle){
         this.context = context;
         this.loaderStyle = loaderStyle;
         return this;

@@ -23,11 +23,11 @@ public class ZhenCaiLoader {
     //底部偏移量缩放比
     private static final int LOADER_OFFSET_SCALE = 10;
 
-    private static final String DEFAULT_LOADER = LoaderStyle.BallClipRotatePulseIndicator.name();
+    private static final String DEFAULT_LOADER = LoaderStyle.BallClipRotatePulseIndicator;
 
     private static final ArrayList<AppCompatDialog> LOADERS = new ArrayList<>();
 
-    public static void showLoading(Context context,String type){
+    public static void showLoading(Context context,String type,String default1){
         final AppCompatDialog dialog = new AppCompatDialog(context, R.style.dialog);
         final AVLoadingIndicatorView avLoadingIndicatorView = LoaderCreator.create(type,context);
 
@@ -50,11 +50,11 @@ public class ZhenCaiLoader {
     }
 
     public static void showLoading(Context context){
-        showLoading(context,DEFAULT_LOADER);
+        showLoading(context,DEFAULT_LOADER,"");
     }
 
-    public static void showLoading(Context context,LoaderStyle type){
-        showLoading(context,type.name());
+    public static void showLoading(Context context,String type){
+        showLoading(context,type,"");
     }
 
     public static void stopLoading(){

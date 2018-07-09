@@ -19,10 +19,10 @@ public class RequestCallbacks implements Callback<String>{
     private final ISuccess SUCCESS;
     private final IFailure FAILURE;
     private final IError ERROR;
-    private final LoaderStyle LOADER_STYLE;
+    private final String LOADER_STYLE;
     private static final Handler HANDLER = new Handler();
 
-    public RequestCallbacks(IRequest request, ISuccess success, IFailure failure, IError error,LoaderStyle loaderStyle) {
+    public RequestCallbacks(IRequest request, ISuccess success, IFailure failure, IError error,String loaderStyle) {
         this.REQUEST = request;
         this.SUCCESS = success;
         this.FAILURE = failure;
